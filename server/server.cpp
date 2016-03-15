@@ -21,9 +21,9 @@ class myTCPServer {
 public:
     myTCPServer(const char* address, int port) {
         server.sin_family = PF_INET;
-        server.sin_addr.s_addr = inet_addr(address);
-        server.sin_port = htons(port);
-        serverSocket = socket(PF_INET, SOCK_STREAM, 0);
+        server.sin_addr.s_addr = inet_addr(address);    /* Comvert to Binary */
+        server.sin_port = htons(port);                  /* Comvert to Binary */
+        serverSocket = socket(PF_INET, SOCK_STREAM, 0); /* IPV4, TCP, No Flag */
         if (serverSocket == -1) {
             error("ERROR on creating socket");
         }

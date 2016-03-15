@@ -12,9 +12,9 @@ class myTCP {
 public:
     myTCP(const char* address, int port) {
         server.sin_family = PF_INET;
-        server.sin_addr.s_addr = inet_addr(address);
-        server.sin_port = htons(port);
-        socketDescriptor = socket(PF_INET, SOCK_STREAM, 0);
+        server.sin_addr.s_addr = inet_addr(address);        /* Comvert to Binary */
+        server.sin_port = htons(port);                      /* Comvert to Binary */
+        socketDescriptor = socket(PF_INET, SOCK_STREAM, 0); /* IPV4, TCP, No Flag */
     }
 
     bool connectServer() {
@@ -43,14 +43,6 @@ int main() {
     myTCP tcp("127.0.0.1", 3500);
     tcp.connectServer();
 
-    /*while(flag == 'y') {
-        printf("Please input needed messages: \n");
-        scanf ("%[^\n]%*c", buffer);
-        printf("sending...\n");
-        tcp.sendMessages(buffer, sizeof(buffer));
-        printf("Coneinue?(y/n): ");
-        scanf("%c%*c", &flag); /* %*c將Enter(CR)符號消去
-    }*/
     printf("Please input needed messages: \n");
     scanf ("%[^\n]%*c", buffer);
     printf("sending [%s] ...\n", buffer);
